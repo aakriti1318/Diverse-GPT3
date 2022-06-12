@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import config
+import aicontent
 
 def page_not_found(e):
   return render_template('404.html'), 404
@@ -21,11 +22,10 @@ def productDescription():
 
     if request.method == 'POST':
         query = request.form['productDescription']
-        print(query)
 
+        openAIAnswer = aicontent.productDescription(query)
         prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
+        
     return render_template('product-description.html', **locals())
 
 
@@ -123,14 +123,5 @@ def videoDescription():
 
     return render_template('video-description.html', **locals())
 
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='8888', debug=True)
+    app.run(debug=True)
