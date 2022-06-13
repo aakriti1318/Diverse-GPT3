@@ -12,4 +12,4 @@ config = {
     'production': DevelopmentConfig
 }
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = '--API KEY--'
