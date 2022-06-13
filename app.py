@@ -21,10 +21,10 @@ def index():
 def productDescription():
 
     if request.method == 'POST':
-        query = request.form['productDescription']
-
-        openAIAnswer = aicontent.productDescription(query)
-        prompt = 'AI Suggestions for {} are:'.format(query)
+        submission = request.form['productDescription']
+        query = "Generate a detailed Product Description for: {}".format(submission)
+        openAIAnswer = aicontent.OpenAIQuery(query)
+        prompt = 'AI Suggestions for {} are:'.format(submission)
         
     return render_template('product-description.html', **locals())
 
@@ -34,11 +34,11 @@ def productDescription():
 def jobDescription():
 
     if request.method == 'POST':
-        query = request.form['jobDescription']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['jobDescription']
+        query = "Generate a detailed Job Description for: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('job-description.html', **locals())
 
@@ -48,12 +48,12 @@ def jobDescription():
 def tweetIdeas():
 
     if request.method == 'POST':
-        query = request.form['tweetIdeas']
-        print(query)
+        submission = request.form['tweetIdeas']
+        part1 = aicontent.OpenAIQuery("Generate a tweet on the subject: {} \n".format(submission))
+        part2 = aicontent.OpenAIQuery('Generate twitter hashtag for: {}'.format(submission))
 
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
+        openAIAnswer = '{} {}'.format(part1, part2)
+        prompt = 'AI Suggestions for {} are:'.format(submission)
     return render_template('tweet-ideas.html', **locals())
 
 
@@ -62,11 +62,11 @@ def tweetIdeas():
 def coldEmails():
 
     if request.method == 'POST':
-        query = request.form['coldEmails']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['coldEmails']
+        query = "Write a cold email to potential clients about: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('cold-emails.html', **locals())
 
@@ -76,11 +76,11 @@ def coldEmails():
 def socialMedia():
 
     if request.method == 'POST':
-        query = request.form['socialMedia']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['socialMedia']
+        query = "Generate a Facebook Ad copy for our product: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('social-media.html', **locals())
 
@@ -89,11 +89,11 @@ def socialMedia():
 def businessPitch():
 
     if request.method == 'POST':
-        query = request.form['businessPitch']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['businessPitch']
+        query = "Generate a Business idea Pitch for: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('business-pitch.html', **locals())
 
@@ -102,11 +102,11 @@ def businessPitch():
 def videoIdeas():
 
     if request.method == 'POST':
-        query = request.form['videoIdeas']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['videoIdeas']
+        query = "Generate a Youtube video topic ideas for: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('video-ideas.html', **locals())
 
@@ -115,11 +115,11 @@ def videoIdeas():
 def videoDescription():
 
     if request.method == 'POST':
-        query = request.form['videoDescription']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        submission = request.form['videoDescription']
+        query = "Generate a detailed Youtube Video Description for: {}".format(submission)
+        openAIAnswerUnformated = aicontent.OpenAIQuery(query)
+        openAIAnswer = openAIAnswerUnformated.replace('\n', '<br>')
+        prompt = 'AI Suggestions for {} are:'.format(submission)
 
     return render_template('video-description.html', **locals())
 

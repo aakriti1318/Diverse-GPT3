@@ -3,11 +3,11 @@ import openai
 import config 
 openai.api_key = config.OPENAI_API_KEY
 
-def productDescription(query):
+def OpenAIQuery(query):
     response = openai.Completion.create(
         model="davinci-instruct-beta-v3",
-        prompt="Generate a detailed Product Description for: {}".format(query),
-        temperature=0.5,
+        prompt=query,
+        temperature=0.7,
         max_tokens=250,
         top_p=1,
         frequency_penalty=0,
